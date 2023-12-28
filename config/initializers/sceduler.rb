@@ -10,7 +10,7 @@ require_relative '../../app/models/hour_weather'
 
 scheduler = Rufus::Scheduler.new
 
-scheduler.cron '10 * * * *' do
+scheduler.cron '05 * * * *' do
   puts 'Running hourly weather extraction job...'
   HistoricalWeatherExtractionService.call
   puts 'Hourly weather extraction job complete!'

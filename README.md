@@ -1,24 +1,54 @@
-# README
+# Приложение для Отслеживания Погоды
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Добро пожаловать в приложение для отслеживания погоды! Это API приложение на Ruby on Rails, которое позволяет получать текущую и историческую информацию о погоде, используя [AccuWeather API](https://developer.accuweather.com).
 
-Things you may want to cover:
+## Эндпоинты
 
-* Ruby version
+### 1. /weather/current
 
-* System dependencies
+Получить текущую температуру в городе. Просто сделайте запрос к `/weather/current`, и вы получите актуальные данные о текущих условиях.
 
-* Configuration
+### 2. /weather/historical
 
-* Database creation
+Этот эндпоинт предоставляет часовые данные о температуре за последние 24 часа. Для доступа к этим данным отправьте запрос к `/weather/historical`.
 
-* Database initialization
+### 3. /weather/historical/max
 
-* How to run the test suite
+Узнайте максимальную температуру за последние 24 часа, сделав запрос к `/weather/historical/max`.
 
-* Services (job queues, cache servers, search engines, etc.)
+### 4. /weather/historical/min
 
-* Deployment instructions
+Получите минимальную температуру за последние 24 часа с `/weather/historical/min`.
 
-* ...
+### 5. /weather/historical/avg
+
+Узнайте среднюю температуру за последние 24 часа, сделав запрос к `/weather/historical/avg`.
+
+### 6. /weather/by_time
+
+Найдите температуру, ближайшую к указанной временной метке. Для времени используется формат `epoch_time`
+
+### 7. /health
+
+Проверьте статус бекенда с `/health`. Всегда отвечает "OK".
+
+## Реализация и Технические Детали
+
+- Используется планировщик `Rufus` и `cron_job` на его основе для автоматического получения данных за последние 24 часа. Задача выполняется каждый час.
+- Контейнер инициализируется сразу с начальными данными за последние 24 часа из [AccuWeather](https://developer.accuweather.com).
+
+## Начало Работы
+
+1. Убедитесь, что Docker установлен на вашем компьютере.
+2. Разместите файл `config/master.key` для расшифровки учетных данных
+3. Запустите приложение с помощью `sudo docker-compose up --build`.
+4. Отправляйте запросы к эндпоинтам и наслаждайтесь информацией о погоде!
+
+Вы можете использовать свои `credentials`, они имеют структуру:
+```
+accu_weather:
+  apikey: accu_weather_api_key
+```
+
+Если у вас есть вопросы или предложения по улучшению, не стесняйтесь обращаться. Приятного использования!
+

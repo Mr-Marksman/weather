@@ -12,5 +12,7 @@ class HistoricalWeatherExtractionService
         puts e
       end
     end
+
+    handle_asynchronously :call
   end
 end

@@ -1,0 +1,144 @@
+---
+openapi: 3.0.1
+info:
+  title: API WEATHER
+  version: v0
+paths:
+  "/weather/current":
+    get:
+      summary: Retrieves the current weather
+      tags:
+      - Current weather
+      responses:
+        '200':
+          description: current weather
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  temperature_value:
+                    type: number
+                  epoch_time:
+                    type: integer
+  "/weather/historical":
+    get:
+      summary: Retrieves historical hour weather data for last day
+      tags:
+      - Historical weather
+      responses:
+        '200':
+          description: historical hour weather data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    temperature_value:
+                      type: number
+                    epoch_time:
+                      type: integer
+                  required:
+                  - id
+                  - temperature_value
+                  - epoch_time
+  "/weather/historical/max":
+    get:
+      summary: Retrieves maximum historical hour weather data
+      tags:
+      - Historical weather
+      responses:
+        '200':
+          description: maximum historical hour weather data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  temperature_value:
+                    type: number
+                  epoch_time:
+                    type: integer
+  "/weather/historical/min":
+    get:
+      summary: Retrieves minimum historical hour weather data
+      tags:
+      - Historical weather
+      responses:
+        '200':
+          description: minimum historical hour weather data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  temperature_value:
+                    type: number
+                  epoch_time:
+                    type: integer
+  "/weather/historical/avg":
+    get:
+      summary: Retrieves average historical hour weather data
+      tags:
+      - Historical weather
+      responses:
+        '200':
+          description: average historical hour weather data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  temperature_value:
+                    type: number
+                  epoch_time:
+                    type: integer
+  "/weather/by_time":
+    get:
+      summary: Retrieves weather data for a specific time
+      tags:
+      - By time weather
+      parameters:
+      - name: epoch_time
+        in: query
+        default: 1703795373
+        description: Epoch time for specific weather data
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: weather data for a specific time
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  temperature_value:
+                    type: number
+                  epoch_time:
+                    type: integer
+  "/health":
+    get:
+      summary: Returns health status
+      tags:
+      - Health
+      responses:
+        '200':
+          description: health status
+servers:
+- url: http://0.0.0.0:3000

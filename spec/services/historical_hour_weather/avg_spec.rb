@@ -7,7 +7,7 @@ RSpec.describe HistoricalHourWeather::Avg do
 
     context 'with hour weathers for the last day' do
       let!(:hour_weathers) { FactoryBot.create_list(:hour_weather, 10) }
-      let(:avg_temperature) { hour_weathers.sum(&:temperature_value) / hour_weathers.count }
+      let(:avg_temperature) { (hour_weathers.sum(&:temperature_value) / hour_weathers.count).round(1) }
 
       before do
         allow(HistoricalHourWeather::Base).to receive(:get_last_day_scope).and_return(hour_weathers)

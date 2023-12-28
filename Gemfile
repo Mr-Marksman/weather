@@ -12,6 +12,9 @@ gem 'rest-client'
 gem "bootsnap", require: false
 gem 'pg'
 gem "rspec-rails"
+gem 'delayed_job', "> 3"
+gem 'delayed_job_active_record'
+gem 'daemons'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -20,6 +23,9 @@ group :development, :test do
   gem 'faker'
   gem "rspec-rails"
   gem 'webmock'
+  gem 'rswag-api'
+  gem 'rswag-ui'
+  gem 'rswag-specs'
 end
 
 group :development do

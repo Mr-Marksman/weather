@@ -4,4 +4,4 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install
 COPY . .
 EXPOSE 3000
-CMD ["sh", "-c", "rails db:migrate && rails runner 'HistoricalWeatherExtractionService.call' && rails server -b 0.0.0.0"]
+CMD ["sh", "-c", "rails db:migrate && bin/delayed_job start && rails runner 'HistoricalWeatherExtractionService.call' && rails server -b 0.0.0.0"]

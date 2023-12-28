@@ -15,7 +15,7 @@ module HistoricalHourWeather
       end
 
       def calculate_avg_temperature(scope)
-        scope.any? ? scope.pluck(:temperature_value).sum / scope.count : nil
+        scope.any? ? (scope.pluck(:temperature_value).sum / scope.count).round(1) : nil
       end
     end
   end
